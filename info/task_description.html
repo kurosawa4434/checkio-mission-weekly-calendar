@@ -44,7 +44,7 @@ list(weekly_calendar(2020, 9, 30, 0)) == [28, 29, 30, 1, 2, 3, 4]</pre>
 <p>
     <strong>Precondition:</strong><br>
     <ul>
-        <li>01/01/0001 &le; input_date &le; 12/31/9999</li>
+        <li>datetime.date(1, 1, 1) &le; datetime.date(year, month, day) &le; datetime.date(9999, 12, 31)</li>
         <li>0 &le; the first day of the week &le; 6</li>
     </ul>
 </p>
