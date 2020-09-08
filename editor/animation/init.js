@@ -35,6 +35,9 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                 sunday: {
                     'fill': 'red',
                 },
+                other_month: {
+                    'fill': 'gray',
+                },
                 frame: {
                     'stroke-width': 0.2,
                 },
@@ -81,16 +84,19 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
              for (let i = 0; i < 7; i += 1) {
                 let offset = i*edge
                 let cur_weekday = (first_week_day+i) % 7
-                let ps = paper.set()
-                ps.push(paper.text(left+edge/2+offset, 40, weekday_english_list[cur_weekday]).attr(attr.weekday))
-                ps.push(paper.text(left+edge/2+offset, 50+edge/2, answer[i]).attr(attr.day))
+                let disp_week_day = paper.text(left+edge/2+offset, 40, weekday_english_list[cur_weekday]).attr(attr.weekday)
+                let disp_day = paper.text(left+edge/2+offset, 50+edge/2, answer[i]).attr(attr.day)
                 paper.rect(left+offset, 30, edge, 20).attr(attr.frame)
                 paper.rect(left+offset, 50, edge, edge).attr(attr.frame)
                 if (answer[i] == day) {
                     paper.circle(left+edge/2+offset, 50+edge/2, edge/2*0.8)
                 }
                 if (cur_weekday == 6) {
-                    ps.attr(attr.sunday)
+                    disp_week_day.attr(attr.sunday)
+                    disp_day.attr(attr.sunday)
+                }
+                if (day - 6 > answer[i] || day + 6 < answer[i]) {
+                    disp_day.attr(attr.other_month)
                 }
              }
         }
